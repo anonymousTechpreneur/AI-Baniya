@@ -1,0 +1,80 @@
+.order-summary {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  .header {
+    font-size: 24px;
+    color: blue;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    width: 48%;
+  }
+  
+  .section-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .section-content {
+    padding-left: 10px;
+  }
+  
+  .order-details-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .order-details-table th, .order-details-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .order-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .payment-detail section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  } 
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .back-btn {
+    background-color: #ccc;
+    border: 1px solid #999;
+    border-radius: 5px;
+  }
+  
+  .order-btn {
+    background-color: blue;
+    color: #fff;
+    border: 1px solid blue;
+    border-radius: 5px;
+  }
+  

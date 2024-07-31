@@ -1,0 +1,65 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.order-summary-container {
+  flex: 2;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.chat-page-container {
+  flex: 1;
+  padding: 20px;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-screen {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.bot-message {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.user-message {
+  text-align: right;
+  padding: 10px;
+}
+
+.microphone-icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.options-inline {
+  display: flex;
+  gap: 10px;
+}

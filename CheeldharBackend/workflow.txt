@@ -1,0 +1,164 @@
+1. pip install fastapi uvicorn
+2. pip install google-cloud-speech
+3. pip install openai
+4. pip install pandas
+5. pip install IPython
+6. https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstarts/quickstart-multimodal#expandable-1
+7. pip install -U -q google-generativeai
+8. pip install rapidfuzz
+9. Install Node.js and npm
+10. node -v
+npm -v
+11. npm install -g create-react-app
+12. npm install devextreme devextreme-react
+13. npm install axios
+14. npm install react-router-dom
+15. npx create-react-app ai-baniya-app
+16. npm start
+
+DataBase Creation :
+
+1. CREATE TABLE AI_Baniya.Products (
+    SKU_No INT64 NOT NULL,
+    Name STRING NOT NULL,
+    Category STRING,
+    ProductDescription STRING,
+    productAudio STRING,
+    productImage STRING,
+    PRIMARY KEY (SKU_No) NOT ENFORCED
+);
+
+2. CREATE TABLE AI_Baniya.Supplier (
+    SupplierId INT64 NOT NULL,
+    SupplierName STRING,
+    SupplierPhoneNo STRING,
+    SupplierAddress STRING,
+    SupplierGSTNo STRING,
+    SupplierFirmName STRING,
+    SupplierBankAccountNo STRING,
+    SupplierIFSCCode STRING,
+    SupplierBank STRING,
+    SupplierPAN STRING,
+    SupplierFSSAI STRING,
+    SupplierRTALNo STRING,
+    SupplierManager STRING,
+    PRIMARY KEY (SupplierId) NOT ENFORCED
+);
+
+3. CREATE TABLE AI_Baniya.Inventory (
+    InventoryID INT64 NOT NULL,
+    Quantity STRING,
+    PerPieceWeight FLOAT64,
+    TotalPieces INT64,
+    ManufacturingDate DATE,
+    ExpiryDate DATE,
+    PurchaseBillDate DATE,
+    HSNNumber STRING,
+    CostPerPrice NUMERIC(10, 2),
+    ExtraCostPerPrice NUMERIC(10, 2),
+    MinimumSellingPrice NUMERIC(10, 2),
+    MaximumSellingPrice NUMERIC(10, 2),
+    GST_Percentage NUMERIC(5, 2),
+    PurchaseBillNo STRING,
+    PurchaseFirmName STRING,
+    SupplierId INT64,
+    TotalBillAmount NUMERIC(10, 2),
+    BillPhoto STRING,
+    SKU_No INT64,
+    PRIMARY KEY (InventoryID) NOT ENFORCED,
+    FOREIGN KEY (SupplierId) REFERENCES AI_Baniya.Supplier(SupplierId) NOT ENFORCED,
+    FOREIGN KEY (SKU_No) REFERENCES AI_Baniya.Products(SKU_No) NOT ENFORCED
+);
+
+4. CREATE TABLE AI_Baniya.Customer (
+    CustomerId INT64 NOT NULL,
+    Name STRING,
+    PhoneNumber STRING,
+    EmailId STRING,
+    Address STRING,
+    GSTNumber STRING,
+    NameAudioFile STRING,
+    CustomerImageFile STRING,
+    PRIMARY KEY (CustomerId) NOT ENFORCED
+);
+
+5. CREATE TABLE AI_Baniya.Firms (
+    FirmID STRING NOT NULL,
+    FirmName STRING,
+    FirmPhoneNo STRING,
+    FirmAddress STRING,
+    FirmGSTNo STRING,
+    FirmBankAccountNo STRING,
+    FirmIFSCCode STRING,
+    FirmBank STRING,
+    FirmPAN STRING,
+    FirmFSSAI STRING,
+    FirmRTALNo STRING,
+    FirmManager STRING,
+    PRIMARY KEY (FirmID) NOT ENFORCED
+);
+
+6. CREATE TABLE AI_Baniya.Bill (
+    BillID INT64 NOT NULL,
+    CustomerId INT64,
+    PaymentType STRING,
+    TotalBillAmount NUMERIC(10, 2),
+    PaidAmount NUMERIC(10, 2),
+    RemainingAmount NUMERIC(10, 2),
+    BillDate DATE,
+    PRIMARY KEY (BillID) NOT ENFORCED,
+    FOREIGN KEY (CustomerId) REFERENCES AI_Baniya.Customer(CustomerId) NOT ENFORCED
+);
+
+7. CREATE TABLE AI_Baniya.Orders (
+    OrderId INT64 NOT NULL,
+    BillID INT64 NOT NULL,
+    SKU_No INT64,
+    WeightQuantity STRING,
+    TotalPieces INT64,
+    Discount NUMERIC(10, 2),
+    SellingPrice NUMERIC(10, 2),
+    FirmID STRING,
+    GST_Percentage NUMERIC(5, 2),
+    TotalGST NUMERIC(10, 2),
+    TotalAmount NUMERIC(10, 2),
+    PRIMARY KEY (OrderId) NOT ENFORCED,
+    FOREIGN KEY (SKU_No) REFERENCES AI_Baniya.Products(SKU_No) NOT ENFORCED,
+    FOREIGN KEY (BillID) REFERENCES AI_Baniya.Bill(BillID) NOT ENFORCED,
+    FOREIGN KEY (FirmID) REFERENCES AI_Baniya.Firms(FirmID) NOT ENFORCED
+);
+
+8. CREATE OR REPLACE TABLE `AI_Baniya.customerEmbeddings` AS
+SELECT * FROM ML.GENERATE_EMBEDDING(
+  MODEL `AI_Baniya.embedding_model`,
+  (
+    SELECT *, Name AS content 
+    FROM `AI_Baniya.Customer`
+  )
+)
+WHERE LENGTH(ml_generate_embedding_status) = 0;
+
+9. CREATE OR REPLACE TABLE `AI_Baniya.productEmbeddings` AS
+SELECT * FROM ML.GENERATE_EMBEDDING(
+  MODEL `AI_Baniya.embedding_model`,
+  (
+    SELECT *, Name AS content 
+    FROM `AI_Baniya.Products`
+  )
+)
+WHERE LENGTH(ml_generate_embedding_status) = 0;
+
+10. CREATE OR REPLACE VECTOR INDEX customerIndex
+ON `AI_Baniya.customerEmbeddings`(ml_generate_embedding_result)
+OPTIONS(index_type = 'TREE_AH',
+  distance_type = 'COSINE')
+
+11. CREATE OR REPLACE VECTOR INDEX productIndex
+ON `AI_Baniya.productEmbeddings`(ml_generate_embedding_result)
+OPTIONS(index_type = 'TREE_AH',
+  distance_type = 'COSINE')
+
+12. SELECT table_name, index_name, index_status,
+coverage_percentage, last_refresh_time, disable_reason
+FROM `planar-method-425304-t6.AI_Baniya.INFORMATION_SCHEMA.VECTOR_INDEXES`
+

@@ -1,0 +1,69 @@
+/* src/LoginPage.css */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #d3d3d3;
+    border: 2px solid #5a5af4; /* Add border to the main container */
+    padding: 10px; /* Reduced padding */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+  
+h1 {
+    color: #5a5af4;
+    font-size: 3rem;
+    margin: 0; /* Remove margin */
+    line-height: 1; /* Adjust line height */
+    margin-bottom: 20px; /* Add spacing below the h1 */
+}
+  
+h2 {
+    color: #5a5af4;
+    font-size: 1.5rem;
+    margin: 0; /* Remove margin */
+    padding-bottom: 5px; /* Add a small padding to the bottom */
+    line-height: 1.2; /* Adjust line height */
+}
+  
+.avatar {
+    margin-bottom: 20px; /* Add margin to separate the image from the form */
+}
+
+.avatar img {
+    max-width: 100%; /* Ensure image is responsive */
+    height: auto;    /* Maintain aspect ratio */
+    width: 150px;    /* Set a fixed width for the image */
+    border-radius: 50%; /* Optional: make the image circular */
+}
+  
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e0e0e0;
+    padding: 15px; /* Adjust padding */
+    border-radius: 10px;
+    border: 1px solid #ccc; /* Add border to the form */
+}
+  
+.dx-textbox {
+    margin-bottom: 15px;
+    width: 300px;
+}
+  
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+  
+.dx-button {
+    width: 140px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+  }

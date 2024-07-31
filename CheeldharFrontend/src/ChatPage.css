@@ -1,0 +1,108 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    height: 100vh; /* Use full viewport height */
+    box-sizing: border-box;
+  }
+  
+  .order-summary {
+    flex: 8; /* Increase the flex for order summary */
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .order-summary h2 {
+    margin-bottom: 20px;
+  }
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ensure it takes full height */
+  }
+  
+  .detail-item {
+    margin-bottom: 10px;
+  }
+  
+  .detail-item label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .chatbot-container {
+    flex: 1; /* Decrease the flex for chatbot container */
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; /* Set a max-width to limit the size */
+    height: 100%; /* Use full height */
+  }
+  
+  .chatbot-header {
+    text-align: center;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .chatbot {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .chat-screen {
+    flex: 1;
+    padding: 5px; /* Reduce padding */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+  }
+  
+  .bot-message {
+    color: blue;
+  }
+  
+  .user-message {
+    color: green;
+  }
+  
+  .options-inline {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    padding: 5px; /* Reduce padding */
+    border-top: 1px solid #ddd;
+  }
+  
+  .microphone-icon {
+    width: 25px; /* Reduce icon size */
+    height: 25px; /* Reduce icon size */
+    cursor: pointer;
+    margin-right: 5px; /* Reduce margin */
+  }
+
+  .send-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  
