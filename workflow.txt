@@ -1,4 +1,0 @@
-1. pip install fastapi uvicorn
-2. pip install google-cloud-speech
-3. pip install openai
-4. setx OPENAI_API_KEY "sk-proj-pqNbgxG7jT7GHIj08FRRT3BlbkFJPZB5QqeNAiqYKOoIVLwS"
